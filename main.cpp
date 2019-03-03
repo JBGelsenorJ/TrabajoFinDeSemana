@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
 
 	// Create an application window with the following settings:
 	window = SDL_CreateWindow(
-		"An SDL2 window",                  // nombre pentaña
+		"Trabajo finde javier belda",                  // nombre pentaña
 		SDL_WINDOWPOS_UNDEFINED,           // posicion x incial
 		SDL_WINDOWPOS_UNDEFINED,           // pos y inicial
 		512,                               // anchura
