@@ -15,7 +15,8 @@ int main(int argc, char* argv[]) {
 		512,                               // anchura
 		512,                               // altura
 		0);
-
+	int numx = -256;
+	int numy = -256;
 	while (1) {
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
@@ -26,12 +27,35 @@ int main(int argc, char* argv[]) {
 		SDL_RenderClear(renderer);// limpia la pantalla con el color elegido
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // color de dibujo
 		SDL_Rect rectangle; //Creamos rectangulo
-		rectangle.x = 10; //Posicion en x
-		rectangle.y = 100; // posicion en y
+		rectangle.x = numx; //Posicion en x
+		rectangle.y = numy; // posicion en y
 		rectangle.w = 200; //ancho
-		rectangle.h = 200; //alto
+		rectangle.h = 100; //alto
 		SDL_RenderFillRect(renderer, &rectangle);
+		for (int i = 0; i < 256; i++)
+		{
+			if (numx <= 256)
+			{
+				numx += 100;
+			}
+			else if (numx >= 256)
+			{
+				numx -= 30;
+			}
+			{
+			}
+			if (numx <= 256)
+			{
+				numy += 100;
+			}
+			else if (numx >= 256)
+			{
+				numy -= 30;
+			}
+		}
 		SDL_RenderPresent(renderer); 		//Hasta aqui renderiza en cada bucle
+		SDL_Delay(1000);
+		SDL_DestroyRenderer(renderer);
 	}
 
 	
