@@ -3,31 +3,38 @@
 #pragma comment(lib, "SDL/Libx86/SDL2.lib")
 #pragma comment(lib, "SDL/Libx86/SDL2main.lib")
 int main(int argc, char* argv[]) {
-	printf("hello world");
-	SDL_Window *window;                    // Declare a pointer
-
-	SDL_Init(SDL_INIT_VIDEO);              // Initialize SDL2
+	SDL_Window *window;                    // puntero ventana
+	SDL_Renderer* renderer;				// puntero para renderizar
+	SDL_Init(SDL_INIT_VIDEO);              // inicializar
 
 	// Create an application window with the following settings:
 	window = SDL_CreateWindow(
-		"An SDL2 window",                  // window title
-		SDL_WINDOWPOS_UNDEFINED,           // initial x position
-		SDL_WINDOWPOS_UNDEFINED,           // initial y position
-		640,                               // width, in pixels
-		480,                               // height, in pixels
-		SDL_WINDOW_OPENGL                  // flags - see below
-	);
+		"An SDL2 window",                  // nombre pentaña
+		SDL_WINDOWPOS_UNDEFINED,           // posicion x incial
+		SDL_WINDOWPOS_UNDEFINED,           // pos y inicial
+		512,                               // anchura
+		512,                               // altura
+		0);
 
-	// Check that the window was successfully created
-	if (window == NULL) {
-		// In the case that the window could not be made...
-		printf("Could not create window: %s\n", SDL_GetError());
-		return 1;
+	while (1) {
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) {
+			/* handle your event here */
+		}
+		renderer = SDL_CreateRenderer(window, -1, 0); //para que los dibujos afecten a dicha ventana
+		SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // elegimos color
+		SDL_RenderClear(renderer);// limpia la pantalla con el color elegido
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // color de dibujo
+		SDL_Rect rectangle; //Creamos rectangulo
+		rectangle.x = 10; //Posicion en x
+		rectangle.y = 100; // posicion en y
+		rectangle.w = 200; //ancho
+		rectangle.h = 200; //alto
+		SDL_RenderFillRect(renderer, &rectangle);
+		SDL_RenderPresent(renderer); 		//Hasta aqui renderiza en cada bucle
 	}
 
-	// The window is open: could enter program loop here (see SDL_PollEvent())
-
-	SDL_Delay(3000);  // Pause execution for 3000 milliseconds, for example
+	
 
 	// Close and destroy the window
 	SDL_DestroyWindow(window);
