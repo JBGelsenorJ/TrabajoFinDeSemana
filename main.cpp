@@ -7,7 +7,7 @@ int main(int argc, char* argv[]) {
 	SDL_Renderer* renderer;				// puntero para renderizar
 	SDL_Init(SDL_INIT_VIDEO);              // inicializar
 
-	// Create an application window with the following settings:
+	// Creacion de una ventana
 	window = SDL_CreateWindow(
 		"Trabajo finde javier belda",                  // nombre pentaña
 		SDL_WINDOWPOS_UNDEFINED,           // posicion x incial
@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 	while (1) {
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
-			/* handle your event here */
+			/*Para eventos*/
 		}
 		renderer = SDL_CreateRenderer(window, -1, 0); //para que los dibujos afecten a dicha ventana
 		SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // elegimos color
@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
 
 	
 
-	// Close and destroy the window
+	// Destruye la ventana (en teoria)
 	SDL_DestroyWindow(window);
 
 	// Clean up
