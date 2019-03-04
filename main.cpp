@@ -17,6 +17,7 @@ int main(int argc, char* argv[]) {
 		0);
 	int numx = 0;
 	int numy = 0;
+	int ban = 0;
 	while (1) {
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
@@ -37,14 +38,7 @@ int main(int argc, char* argv[]) {
 					numy += 10;
 					break;
 				case SDLK_SPACE:
-					renderer = SDL_CreateRenderer(window, -1, 0);
-					SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // color de dibujo
-					SDL_Rect rectangle1; //Creamos rectangulo
-					rectangle1.x = numx+200; //Posicion en x
-					rectangle1.y = numy+200; // posicion en y
-					rectangle1.w = 10; //ancho
-					rectangle1.h = 10; //alto
-					SDL_RenderFillRect(renderer, &rectangle1);
+					ban = 1;
 					break;
 				default:
 					break;
@@ -61,10 +55,20 @@ int main(int argc, char* argv[]) {
 		rectangle.w = 200; //ancho
 		rectangle.h = 100; //alto
 		SDL_RenderFillRect(renderer, &rectangle);
+		if (ban == 1)
+		{
+			/*renderer = SDL_CreateRenderer(window, -1, 0); //para que los dibujos afecten a dicha ventana
+			SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // color de dibujo
+			SDL_Rect rectangle1; //Creamos rectangulo
+			rectangle1.x = 256; //Posicion en x
+			rectangle1.y = -256; // posicion en y
+			rectangle1.w = 50; //ancho 
+			rectangle1.h = 50; //alto */
+		}
 		SDL_RenderPresent(renderer); 		//Hasta aqui renderiza en cada bucle
 		SDL_Delay(1000);
 		SDL_DestroyRenderer(renderer);
-	}
+	}	
 
 	
 
