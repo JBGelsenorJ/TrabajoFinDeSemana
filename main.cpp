@@ -15,12 +15,41 @@ int main(int argc, char* argv[]) {
 		512,                               // anchura
 		512,                               // altura
 		0);
-	int numx = -256;
-	int numy = -256;
+	int numx = 0;
+	int numy = 0;
 	while (1) {
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
-			/*Para eventos*/
+			switch (event.type) {
+				/* Look for a keypress */
+			case SDL_KEYDOWN:
+				switch (event.key.keysym.sym) {
+				case SDLK_LEFT:
+					numx -= 10;
+					break;
+				case SDLK_RIGHT:
+					numx += 10;
+					break;
+				case SDLK_UP:
+					numy -= 10;
+					break;
+				case SDLK_DOWN:
+					numy += 10;
+					break;
+				case SDLK_SPACE:
+					renderer = SDL_CreateRenderer(window, -1, 0);
+					SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // color de dibujo
+					SDL_Rect rectangle1; //Creamos rectangulo
+					rectangle1.x = numx+200; //Posicion en x
+					rectangle1.y = numy+200; // posicion en y
+					rectangle1.w = 10; //ancho
+					rectangle1.h = 10; //alto
+					SDL_RenderFillRect(renderer, &rectangle1);
+					break;
+				default:
+					break;
+				}
+			}
 		}
 		renderer = SDL_CreateRenderer(window, -1, 0); //para que los dibujos afecten a dicha ventana
 		SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // elegimos color
@@ -32,27 +61,6 @@ int main(int argc, char* argv[]) {
 		rectangle.w = 200; //ancho
 		rectangle.h = 100; //alto
 		SDL_RenderFillRect(renderer, &rectangle);
-		for (int i = 0; i < 256; i++)
-		{
-			if (numx <= 256)
-			{
-				numx += 100;
-			}
-			else if (numx >= 256)
-			{
-				numx -= 30;
-			}
-			{
-			}
-			if (numx <= 256)
-			{
-				numy += 100;
-			}
-			else if (numx >= 256)
-			{
-				numy -= 30;
-			}
-		}
 		SDL_RenderPresent(renderer); 		//Hasta aqui renderiza en cada bucle
 		SDL_Delay(1000);
 		SDL_DestroyRenderer(renderer);
