@@ -18,7 +18,6 @@ int main(int argc, char* argv[]) {
 	int numx = 0;
 	int numy = 0;
 	int ban = 0;
-	int rec1y = 0;
 	int rec1x = 0;
 	bool running = true;
 	while (running) {
@@ -46,7 +45,6 @@ int main(int argc, char* argv[]) {
 					break;
 				case SDLK_SPACE:
 					ban = 1;
-					rec1y = 0;
 					rec1x = 0;
 					break;
 				case SDLK_ESCAPE:
