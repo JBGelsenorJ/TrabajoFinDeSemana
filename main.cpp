@@ -3,27 +3,32 @@
 #pragma comment(lib, "SDL/Libx86/SDL2.lib")
 #pragma comment(lib, "SDL/Libx86/SDL2main.lib")
 int main(int argc, char* argv[]) {
-	SDL_Window *window;                    // puntero ventana
-	SDL_Renderer* renderer;				// puntero para renderizar
-	SDL_Init(SDL_INIT_VIDEO);              // inicializar
+	SDL_Window *window;                    // pointer window
+	SDL_Renderer* renderer;				// pointer for rendering
+	SDL_Init(SDL_INIT_VIDEO);              // inicialize
 
 	// Creacion de una ventana
 	window = SDL_CreateWindow(
-		"Trabajo finde javier belda",                  // nombre pentaña
-		SDL_WINDOWPOS_UNDEFINED,           // posicion x incial
-		SDL_WINDOWPOS_UNDEFINED,           // pos y inicial
-		1024,                               // anchura
-		512,                               // altura
+		"Amazing work",                  // window's name
+		SDL_WINDOWPOS_UNDEFINED,           // initial pos x 
+		SDL_WINDOWPOS_UNDEFINED,           // initial pos y 
+		1024,                               // width
+		512,                               // height
 		0);
 	int numx = 0;
 	int numy = 0;
 	int ban = 0;
 	int rec1y = 0;
 	int rec1x = 0;
-	int cooldown = 0;
-	while (1) {
+	bool running = true;
+	while (running) {
 		SDL_Event event;
+
 		while (SDL_PollEvent(&event)) {
+			if (event.type==SDL_QUIT)
+			{
+				running = false;
+			}
 			switch (event.type) {
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.sym) {
@@ -44,30 +49,33 @@ int main(int argc, char* argv[]) {
 					rec1y = 0;
 					rec1x = 0;
 					break;
+				case SDLK_ESCAPE:
+					running = false;
+					break;
 				default:
 					break;
 				}
 			}
 		}
-		renderer = SDL_CreateRenderer(window, -1, 0); //para que los dibujos afecten a dicha ventana
-		SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // elegimos color
-		SDL_RenderClear(renderer);// limpia la pantalla con el color elegido
-		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // color de dibujo
-		SDL_Rect rectangle; //Creamos rectangulo
-		rectangle.x = numx; //Posicion en x
-		rectangle.y = numy; // posicion en y
-		rectangle.w = 200; //ancho
-		rectangle.h = 100; //alto
+		renderer = SDL_CreateRenderer(window, -1, 0); //with this we make possible that the draws affects this window
+		SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // choosing color
+		SDL_RenderClear(renderer);// clean the window with the selected color
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); 
+		SDL_Rect rectangle; //Creating a rectangle
+		rectangle.x = numx; //Position in x
+		rectangle.y = numy; // position in y
+		rectangle.w = 200; //width
+		rectangle.h = 100; //height
 		SDL_RenderFillRect(renderer, &rectangle);
 
 		if (ban == 1)
 		{
-		SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // color de dibujo
-		SDL_Rect rectangle1; //Creamos rectangulo
-		rectangle1.x = numx + 220 +rec1x; //Posicion en x
-		rectangle1.y = numy + 50; // posicion en y
-		rectangle1.w = 100; //ancho
-		rectangle1.h = 30; //alto
+		SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); 
+		SDL_Rect rectangle1; 
+		rectangle1.x = numx + 220 +rec1x; 
+		rectangle1.y = numy + 50; 
+		rectangle1.w = 100; 
+		rectangle1.h = 30; 
 		SDL_RenderFillRect(renderer, &rectangle1);
 		for (int i = 0; i < 200; i++)
 		{
@@ -75,15 +83,12 @@ int main(int argc, char* argv[]) {
 		}
 
 		}
-		SDL_RenderPresent(renderer); 		//Hasta aqui renderiza en cada bucle
+		SDL_RenderPresent(renderer); 		//until here the code renders on every loop
 		SDL_Delay(1000);
 		SDL_DestroyRenderer(renderer);
+
+
 	}	
-
-	
-
-	// Destruye la ventana (en teoria)
-	SDL_DestroyWindow(window);
 
 	// Clean up
 	SDL_Quit();
