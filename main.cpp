@@ -12,17 +12,19 @@ int main(int argc, char* argv[]) {
 		"Trabajo finde javier belda",                  // nombre pentaña
 		SDL_WINDOWPOS_UNDEFINED,           // posicion x incial
 		SDL_WINDOWPOS_UNDEFINED,           // pos y inicial
-		512,                               // anchura
+		1024,                               // anchura
 		512,                               // altura
 		0);
 	int numx = 0;
 	int numy = 0;
 	int ban = 0;
+	int rec1y = 0;
+	int rec1x = 0;
+	int cooldown = 0;
 	while (1) {
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
 			switch (event.type) {
-				/* Look for a keypress */
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.sym) {
 				case SDLK_LEFT:
@@ -39,6 +41,8 @@ int main(int argc, char* argv[]) {
 					break;
 				case SDLK_SPACE:
 					ban = 1;
+					rec1y = 0;
+					rec1x = 0;
 					break;
 				default:
 					break;
@@ -55,15 +59,21 @@ int main(int argc, char* argv[]) {
 		rectangle.w = 200; //ancho
 		rectangle.h = 100; //alto
 		SDL_RenderFillRect(renderer, &rectangle);
+
 		if (ban == 1)
 		{
-			/*renderer = SDL_CreateRenderer(window, -1, 0); //para que los dibujos afecten a dicha ventana
-			SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // color de dibujo
-			SDL_Rect rectangle1; //Creamos rectangulo
-			rectangle1.x = 256; //Posicion en x
-			rectangle1.y = -256; // posicion en y
-			rectangle1.w = 50; //ancho 
-			rectangle1.h = 50; //alto */
+		SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // color de dibujo
+		SDL_Rect rectangle1; //Creamos rectangulo
+		rectangle1.x = numx + 220 +rec1x; //Posicion en x
+		rectangle1.y = numy + 50; // posicion en y
+		rectangle1.w = 100; //ancho
+		rectangle1.h = 30; //alto
+		SDL_RenderFillRect(renderer, &rectangle1);
+		for (int i = 0; i < 200; i++)
+		{
+			rec1x++;
+		}
+
 		}
 		SDL_RenderPresent(renderer); 		//Hasta aqui renderiza en cada bucle
 		SDL_Delay(1000);
