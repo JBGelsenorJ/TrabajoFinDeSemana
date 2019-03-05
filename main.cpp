@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
 				}
 			}
 		}
-		renderer = SDL_CreateRenderer(window, -1, 0); //with this we make possible that the draws affects this window
+		renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_PRESENTVSYNC); //with this we make possible that the draws affects this window
 		SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // choosing color
 		SDL_RenderClear(renderer);// clean the window with the selected color
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); 
@@ -75,10 +75,10 @@ int main(int argc, char* argv[]) {
 		rectangle1.w = 100; 
 		rectangle1.h = 30; 
 		SDL_RenderFillRect(renderer, &rectangle1);
-		for (int i = 0; i < 200; i++)
-		{
-			rec1x++;
-		}
+			for (int i = 0; i < 200; i++)
+			{
+				rec1x++;
+			}
 
 		}
 		SDL_RenderPresent(renderer); 		//until here the code renders on every loop
