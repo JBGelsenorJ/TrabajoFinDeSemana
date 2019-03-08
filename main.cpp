@@ -11,6 +11,8 @@ int main(int argc, char* argv[]) {
 	SDL_Renderer* renderer;				// pointer for rendering
 	SDL_Init(SDL_INIT_VIDEO);              // inicialize
 	IMG_Init(IMG_INIT_PNG);
+	SDL_Surface* Loading_Surf;
+	SDL_Texture* Background_Tx;
 	// Creacion de una ventana
 	window = SDL_CreateWindow(
 		"Amazing work",                  // window's name
@@ -19,6 +21,8 @@ int main(int argc, char* argv[]) {
 		1024,                               // width
 		512,                               // height
 		0);
+	SDL_Surface *image;
+	image = IMG_Load("../Assets/images/background");
 	int numx = 0;
 	int numy = 0;
 	int ban = 0;
@@ -60,8 +64,11 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_PRESENTVSYNC); //with this we make possible that the draws affects this window
-		SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // choosing color
-		SDL_RenderClear(renderer);// clean the window with the selected color
+		Loading_Surf = SDL_LoadBMP("../Assets/images/background");
+		Background_Tx = SDL_CreateTextureFromSurface(renderer, image);
+		SDL_FreeSurface(Loading_Surf);
+		/*SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // choosing color
+		SDL_RenderClear(renderer);// clean the window with the selected color */
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); 
 		SDL_Rect rectangle; //Creating a rectangle
 		rectangle.x = numx; //Position in x
