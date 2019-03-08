@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 		512,                               // height
 		0);
 	SDL_Surface *image;
-	image = IMG_Load("../Assets/images/background");
+	image = IMG_Load("../Assets/images/background.png");
 	int numx = 0;
 	int numy = 0;
 	int ban = 0;
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_PRESENTVSYNC); //with this we make possible that the draws affects this window
-		Loading_Surf = SDL_LoadBMP("../Assets/images/background");
+		Loading_Surf = image;
 		Background_Tx = SDL_CreateTextureFromSurface(renderer, image);
 		SDL_FreeSurface(Loading_Surf);
 		/*SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // choosing color
