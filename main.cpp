@@ -32,16 +32,16 @@ int main(int argc, char* argv[]) {
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.sym) {
 				case SDLK_LEFT:
-					numx -= 10;
+					numx -= 30;
 					break;
 				case SDLK_RIGHT:
-					numx += 10;
+					numx += 30;
 					break;
 				case SDLK_UP:
-					numy -= 10;
+					numy -= 30;
 					break;
 				case SDLK_DOWN:
-					numy += 10;
+					numy += 30;
 					break;
 				case SDLK_SPACE:
 					ban = 1;
@@ -82,7 +82,7 @@ int main(int argc, char* argv[]) {
 
 		}
 		SDL_RenderPresent(renderer); 		//until here the code renders on every loop
-		SDL_Delay(1000);
+		SDL_Delay(100);
 		SDL_DestroyRenderer(renderer);
 
 
