@@ -1,7 +1,11 @@
-#include"SDL/include/SDL.h"
+#include"SDL_Image/Include/SDL_image.h"
+#include "SDL/include/SDL.h"
+
 #include<stdio.h>
+
 #pragma comment(lib, "SDL/Libx86/SDL2.lib")
 #pragma comment(lib, "SDL/Libx86/SDL2main.lib")
+#pragma comment(lib, "SDL_Image/Libx86/SDL2_image.lib")
 int main(int argc, char* argv[]) {
 	SDL_Window *window;                    // pointer window
 	SDL_Renderer* renderer;				// pointer for rendering
