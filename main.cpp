@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
 	SDL_Window *window;                    // pointer window
 	SDL_Renderer* renderer;				// pointer for rendering
 	SDL_Init(SDL_INIT_VIDEO);              // inicialize
-
+	IMG_Init(IMG_INIT_PNG);
 	// Creacion de una ventana
 	window = SDL_CreateWindow(
 		"Amazing work",                  // window's name
@@ -94,5 +94,6 @@ int main(int argc, char* argv[]) {
 
 	// Clean up
 	SDL_Quit();
+	IMG_Quit();
 	return 0;
 }
