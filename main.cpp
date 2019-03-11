@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 	SDL_Renderer* renderer;				// pointer for rendering
 	SDL_Init(SDL_INIT_VIDEO);              // inicialize
 	IMG_Init(IMG_INIT_PNG);
-
+	Mix_Init(MIX_INIT_OGG);
 	SDL_Surface* Loading_Surf;
 	SDL_Surface* Loading_Surf1;
 	SDL_Surface* Loading_Surf2;
@@ -23,8 +23,7 @@ int main(int argc, char* argv[]) {
 	
 	
 	SDL_Texture *laser;
-	//laser = IMG_Load("Assets/images/bullet.png");
-	
+
 	// Creacion de una ventana
 	window = SDL_CreateWindow(
 		"Amazing work",                  // window's name
@@ -50,16 +49,16 @@ int main(int argc, char* argv[]) {
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.sym) {
 				case SDLK_LEFT:
-					numx -= 30;
+					numx -= 40;
 					break;
 				case SDLK_RIGHT:
-					numx += 30;
+					numx += 40;
 					break;
 				case SDLK_UP:
-					numy -= 30;
+					numy -= 40;
 					break;
 				case SDLK_DOWN:
-					numy += 30;
+					numy += 40;
 					break;
 				case SDLK_SPACE:
 					ban = 1;
@@ -80,17 +79,17 @@ int main(int argc, char* argv[]) {
 		SDL_FreeSurface(Loading_Surf);
 		SDL_RenderCopy(renderer, background, NULL, NULL);
 
-		Loading_Surf1 = IMG_Load("Assets/images/starship.png");
-		starship = SDL_CreateTextureFromSurface(renderer, Loading_Surf1);
-		SDL_FreeSurface(Loading_Surf1);
-		SDL_RenderCopy(renderer, starship, NULL, NULL);
-		//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); 
-		//SDL_Rect rectangle; //Creating a rectangle
-		/*rectangle.x = numx; //Position in x
+		SDL_Rect rectangle; //Creating a rectangle
+		rectangle.x = numx; //Position in x
 		rectangle.y = numy; // position in y
 		rectangle.w = 200; //width
 		rectangle.h = 100; //height
-		SDL_RenderFillRect(renderer, &rectangle); */
+		
+		Loading_Surf1 = IMG_Load("Assets/images/starship.png");
+		starship = SDL_CreateTextureFromSurface(renderer, Loading_Surf1);
+		SDL_FreeSurface(Loading_Surf1);
+		SDL_RenderCopy(renderer, starship, NULL, &rectangle);
+
 
 
 		if (ban == 1)
@@ -101,7 +100,10 @@ int main(int argc, char* argv[]) {
 		rectangle1.y = numy + 50; 
 		rectangle1.w = 100; 
 		rectangle1.h = 30; 
-		SDL_RenderFillRect(renderer, &rectangle1);
+		Loading_Surf2 = IMG_Load("Assets/images/bullet.png");
+		laser = SDL_CreateTextureFromSurface(renderer, Loading_Surf2);
+		SDL_FreeSurface(Loading_Surf2);
+		SDL_RenderCopy(renderer, laser, NULL, &rectangle1);
 			for (int i = 0; i < 200; i++)
 			{
 				rec1x++;
@@ -118,5 +120,6 @@ int main(int argc, char* argv[]) {
 	// Clean up
 	SDL_Quit();
 	IMG_Quit();
+	Mix_Quit();
 	return 0;
 }
