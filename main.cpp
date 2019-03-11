@@ -13,6 +13,12 @@ int main(int argc, char* argv[]) {
 	IMG_Init(IMG_INIT_PNG);
 	SDL_Surface* Loading_Surf;
 	SDL_Texture* Background_Tx;
+	SDL_Surface *background;
+	background = IMG_Load("Assets/images/background.png");
+	SDL_Surface *starship;
+	starship = IMG_Load("Assets/images/starship.png");
+	SDL_Surface *laser;
+	laser = IMG_Load("Assets/images/bullet.png");
 	// Creacion de una ventana
 	window = SDL_CreateWindow(
 		"Amazing work",                  // window's name
@@ -21,8 +27,6 @@ int main(int argc, char* argv[]) {
 		1024,                               // width
 		512,                               // height
 		0);
-	SDL_Surface *image;
-	image = IMG_Load("../Assets/images/background.png");
 	int numx = 0;
 	int numy = 0;
 	int ban = 0;
@@ -64,11 +68,9 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_PRESENTVSYNC); //with this we make possible that the draws affects this window
-		Loading_Surf = image;
-		Background_Tx = SDL_CreateTextureFromSurface(renderer, image);
+		Loading_Surf = background;
+		Background_Tx = SDL_CreateTextureFromSurface(renderer, background);
 		SDL_FreeSurface(Loading_Surf);
-		/*SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // choosing color
-		SDL_RenderClear(renderer);// clean the window with the selected color */
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); 
 		SDL_Rect rectangle; //Creating a rectangle
 		rectangle.x = numx; //Position in x
