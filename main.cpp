@@ -11,14 +11,18 @@ int main(int argc, char* argv[]) {
 	SDL_Renderer* renderer;				// pointer for rendering
 	SDL_Init(SDL_INIT_VIDEO);              // inicialize
 	IMG_Init(IMG_INIT_PNG);
+
 	SDL_Surface* Loading_Surf;
-	SDL_Texture* Background_Tx;
-	SDL_Surface *background;
-	background = IMG_Load("Assets/images/background.png");
-	SDL_Surface *starship;
-	starship = IMG_Load("Assets/images/starship.png");
-	SDL_Surface *laser;
-	laser = IMG_Load("Assets/images/bullet.png");
+	SDL_Surface* Loading_Surf1;
+	SDL_Surface* Loading_Surf2;
+	SDL_Texture *background;
+
+	SDL_Texture *starship;
+	
+	
+	SDL_Texture *laser;
+	//laser = IMG_Load("Assets/images/bullet.png");
+	
 	// Creacion de una ventana
 	window = SDL_CreateWindow(
 		"Amazing work",                  // window's name
@@ -68,16 +72,24 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_PRESENTVSYNC); //with this we make possible that the draws affects this window
-		Loading_Surf = background;
-		Background_Tx = SDL_CreateTextureFromSurface(renderer, background);
+
+		Loading_Surf = IMG_Load("Assets/images/background.png");
+		background = SDL_CreateTextureFromSurface(renderer, Loading_Surf);
 		SDL_FreeSurface(Loading_Surf);
-		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); 
-		SDL_Rect rectangle; //Creating a rectangle
+		SDL_RenderCopy(renderer, background, NULL, NULL);
+
+		Loading_Surf1 = IMG_Load("Assets/images/starship.png");
+		starship = SDL_CreateTextureFromSurface(renderer, Loading_Surf1);
+		SDL_FreeSurface(Loading_Surf1);
+		SDL_RenderCopy(renderer, starship, NULL, NULL);
+		//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); 
+		//SDL_Rect rectangle; //Creating a rectangle
 		rectangle.x = numx; //Position in x
 		rectangle.y = numy; // position in y
 		rectangle.w = 200; //width
 		rectangle.h = 100; //height
 		SDL_RenderFillRect(renderer, &rectangle);
+
 
 		if (ban == 1)
 		{
