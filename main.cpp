@@ -84,11 +84,11 @@ int main(int argc, char* argv[]) {
 		SDL_RenderCopy(renderer, starship, NULL, NULL);
 		//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); 
 		//SDL_Rect rectangle; //Creating a rectangle
-		rectangle.x = numx; //Position in x
+		/*rectangle.x = numx; //Position in x
 		rectangle.y = numy; // position in y
 		rectangle.w = 200; //width
 		rectangle.h = 100; //height
-		SDL_RenderFillRect(renderer, &rectangle);
+		SDL_RenderFillRect(renderer, &rectangle); */
 
 
 		if (ban == 1)
